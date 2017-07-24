@@ -1,0 +1,50 @@
+
+#home {
+  background-image: url('/images/home-bg.jpg');
+  background-size: cover;
+  color: black;
+  height: 100vh;
+  text-align: center;
+  padding-top: 20vh;
+  font-family: 'Cormorant Garamond', serif;
+  }
+
+#home h1 {
+  font-size: 20px;
+  letter-spacing: 8px;
+  font-style: normal;
+  padding-top: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+
+#home h2 {
+  font-size: 15px;
+}
+
+#home .btn {
+  background: transparent;
+  border-radius: 0;
+  border: 3px solid #ffffff;
+  color: #ffffff;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: 16px 42px;
+  margin-top: 40px;
+  transition: all 0.4s ease-in-out;
+}
+#home .btn:hover {
+  background: #ffffff;
+  color: #202020;
+}
+
+.haveaccount {
+  font-size: 10px;
+  margin: 0px;
+  padding:0px;
+}
+
+.haveaccountsignup {
+  display: inline-block;
+  margin: 0px;
+  padding:0px;
+}

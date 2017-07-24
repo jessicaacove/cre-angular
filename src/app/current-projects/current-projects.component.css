@@ -1,0 +1,75 @@
+
+.container {
+  background-image: url('/images/slider-bg.png');
+}
+
+.logodiv {
+  display: inline-block;
+}
+
+.navlogo {
+  margin: 15px 10px 20px 10px;
+}
+
+.menu {
+  float: right;
+  margin-top: 15px;
+}
+
+.menuitem {
+  padding: 0px 10px 0px 10px;
+}
+
+.highlightmenuitem {
+  border: 1px double gray;
+  padding: 5px;
+  margin-right: 15px;
+}
+
+.pagetitle {
+  text-align: center;
+}
+
+
+li {
+  list-style: none;
+}
+
+.currentprojectbox {
+  float:left;
+  background:lightgrey;
+  width:40vh;
+  padding:20px 20px 20px 20px;
+  margin: 20px 20px 20px 20px;
+}
+.projecttitle h1 {
+  font-size:22px;
+  color: gray;
+  font-weight:normal;
+  text-align: center;
+  border: 1px solid gray;
+}
+
+.projecttitle h2 {
+  font-size:16px;
+  color:gray;
+}
+
+.project-img {
+  margin:0 auto;
+  padding:20px 0px 20px 0px;
+  width:85%;
+}
+
+.content p {
+   color:#54657b;
+ }
+
+.viewdetails {
+  background: transparent;
+  border: 2px solid gray;
+  color: gray;
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+  }
