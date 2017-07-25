@@ -61,6 +61,10 @@ li {
   width:85%;
 }
 
+.actualimage {
+  width: 100%;
+}
+
 .content p {
    color:#54657b;
  }

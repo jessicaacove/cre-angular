@@ -5,8 +5,8 @@
     </div>
     <div class="menu">
       <span><a class="menuitem highlightmenuitem"> Back to Current Projects </a></span>
-      <span class="menuitem"><a>Investor Contacts</a></span>
-      <span class="menuitem"><a [routerLink]="['/investors']">Lender Contacts</a></span>
+      <span class="menuitem"><a [routerLink]="['/investors']">Investor Contacts</a></span>
+      <span class="menuitem"><a [routerLink]="['/lenders']">Lender Contacts</a></span>
       <span class="menuitem"><a>Project Archives</a></span>
       <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
     </div>
@@ -17,9 +17,16 @@
   <h2> {{ oneProject.projectName }} </h2>
   <h3> A {{ oneProject.projectType }} property located at
     <br>
-    {{ oneProject.address }} </h3>
+    {{ oneProject.address }}
+  </h3>
 
+  <div class="project-img">
+    <img class="actualimage" *ngIf="oneProject.mainImage" src="http://localhost:3000{{ oneProject.mainImage }}" alt="" />
+  </div>
+
+  <div class="investmentdetails">
     <p> These are the investments: {{ oneProject.investments }} </p>
+  </div>
 </section>
 
 <section>

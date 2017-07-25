@@ -12,31 +12,31 @@ export class ProjectService {
 
 
   // POST camels
-  newProject(theProjectName, theProjectType, theProjectAddress, theProjectTotalCost, theProjectMainImage, theProjectDetailImage1, theProjectDetailImage2, theProjectDetailImage3, theProjectDetailImage4) {
-    return this.http
-      .post(
-        'http://localhost:3000/api/current-projects',
-
-        // Form body information
-        {
-          projectName: theProjectName,
-          projectType: theProjectType,
-          projectAddress: theProjectAddress,
-          projectTotalCost: theProjectTotalCost,
-          projectMainImage: theProjectMainImage,
-          projectDetailImage1: theProjectDetailImage1,
-          projectDetailImage2: theProjectDetailImage2,
-          projectDetailImage3: theProjectDetailImage3,
-          projectDetailImage4: theProjectDetailImage4
-        },
-
-        // Send the cookies accross domains
-        { withCredentials: true }
-      )
-
-      // Parse the JSON
-      .map(res => res.json());
-  } // close newProject()
+  // newProject(theProjectName, theProjectType, theProjectAddress, theProjectTotalCost, theProjectMainImage, theProjectDetailImage1, theProjectDetailImage2, theProjectDetailImage3, theProjectDetailImage4) {
+  //   return this.http
+  //     .post(
+  //       'http://localhost:3000/api/current-projects',
+  //
+  //       // Form body information
+  //       {
+  //         projectName: theProjectName,
+  //         projectType: theProjectType,
+  //         projectAddress: theProjectAddress,
+  //         projectTotalCost: theProjectTotalCost,
+  //         projectMainImage: theProjectMainImage,
+  //         projectDetailImage1: theProjectDetailImage1,
+  //         projectDetailImage2: theProjectDetailImage2,
+  //         projectDetailImage3: theProjectDetailImage3,
+  //         projectDetailImage4: theProjectDetailImage4
+  //       },
+  //
+  //       // Send the cookies accross domains
+  //       { withCredentials: true }
+  //     )
+  //
+  //     // Parse the JSON
+  //     .map(res => res.json());
+  // } // close newProject()
 
   // GET camels
   allProjects() {

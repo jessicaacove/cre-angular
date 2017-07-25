@@ -6,7 +6,7 @@
     <div class="menu">
       <span><a *ngIf="!isShowingForm" (click)="showNewProjectForm()" class="menuitem highlightmenuitem"> Add New Project </a></span>
       <span class="menuitem"><a [routerLink]="['/investors']">Investor Contacts</a></span>
-      <span class="menuitem"><a>Lender Contacts</a></span>
+      <span class="menuitem"><a [routerLink]="['/lenders']">Lender Contacts</a></span>
       <span class="menuitem"><a>Project Archives</a></span>
       <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
     </div>
@@ -42,11 +42,17 @@
     <br>
 
     <label for="project-main-image-input"> Project Main Image </label>
-    <input id="project-main-image-input" type="text" placeholder="propertypicture.jpg"
+    <input id="project-main-image-input" type="file"
+        ng2FileSelect [uploader]="theUploader"
         [(ngModel)]="projectMainImage" name="projectMainImage">
     <br>
 
-    <label for="project-detail-image-1-input"> Project Detail Image 1 </label>
+    <!-- <label for="project-main-image-input"> Project Main Image </label>
+    <input id="project-main-image-input" type="text" placeholder="propertypicture.jpg"
+        [(ngModel)]="projectMainImage" name="projectMainImage">
+    <br> -->
+
+    <!-- <label for="project-detail-image-1-input"> Project Detail Image 1 </label>
     <input id="project-detail-image-1-input" type="text" placeholder="propertypicture1.jpg"
         [(ngModel)]="projectDetailImage1" name="projectDetailImage1">
     <br>
@@ -64,7 +70,7 @@
     <label for="project-detail-image-4-input"> Project Detail Image 4 </label>
     <input id="project-detail-image-4-input" type="text" placeholder="propertypicture4.jpg"
         [(ngModel)]="projectDetailImage4" name="projectDetailImage4">
-    <br>
+    <br> -->
 
     <button> Save Project </button>
   </form>
@@ -81,7 +87,9 @@
               <br>
               {{ oneProject.address }} </h2>
           </div>
-          <div class="project-img"><img src="images/{{ oneProject.mainImage }}" alt="" /></div>
+          <div class="project-img">
+            <img class="actualimage" *ngIf="oneProject.mainImage" src="http://localhost:3000{{ oneProject.mainImage }}" alt="" />
+          </div>
           <div class="content">
             <p> Investors: </p>
             <p> Lenders: </p>

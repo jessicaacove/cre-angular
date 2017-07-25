@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { FileUploader } from 'ng2-file-upload';
 
 import { AuthService } from '../services/auth.service';
 import { ProjectService } from '../services/project.service';
@@ -23,14 +24,19 @@ export class CurrentProjectsComponent implements OnInit {
   projectAddress: string;
   projectTotalCost: number;
   projectMainImage: string;
-  projectDetailImage1: string;
-  projectDetailImage2: string;
-  projectDetailImage3: string;
-  projectDetailImage4: string;
+  // projectDetailImage1: string;
+  // projectDetailImage2: string;
+  // projectDetailImage3: string;
+  // projectDetailImage4: string;
 
   logoutErrorMessage: string;
   projectListError: string;
+  projectSaveError: string;
 
+
+  theUploader = new FileUploader({
+    url: 'http://localhost:3000/api/current-projects'
+  });
 
   constructor(
     private projectService: ProjectService,
@@ -74,19 +80,47 @@ export class CurrentProjectsComponent implements OnInit {
   }
 
   saveNewProject() {
-    this.projectService.newProject(this.projectName, this.projectType, this.projectAddress, this.projectTotalCost, this.projectMainImage, this.projectDetailImage1, this.projectDetailImage2, this.projectDetailImage3, this.projectDetailImage4)
-      .subscribe(
-        (newProjectFromApi) => {
-          this.projectArray.push(newProjectFromApi);
-          this.isShowingForm = false;
+    this.theUploader.onBuildItemForm = (item, form) => {
+      form.append('projectName', this.projectName);
+      form.append('projectType', this.projectType);
+      form.append('projectAddress', this.projectAddress);
+      form.append('projectTotalCost', this.projectTotalCost);
+    }
 
-        },
+  this.theUploader.onSuccessItem = (item, response) => {
+     const newProjectFromApi = JSON.parse(response);
+     this.projectArray.push(newProjectFromApi);
+     this.isShowingForm = false;
+     this.projectName = "";
+     this.projectType = "";
+     this.projectAddress = "";
+     this.projectTotalCost = undefined;
+     this.projectSaveError = "";
+  };
 
-        (err) => {
-          const allErrors = err.json();
-          console.log(allErrors);
-        }
-      )
+  this.theUploader.onErrorItem = (item, response) => {
+     this.projectSaveError = "Project save failed.";
+  };
+
+  // this is the function that initiates the ajax request
+  this.theUploader.uploadAll();
+
+
+
+  //   this.projectService.newProject(this.projectName, this.projectType, this.projectAddress, this.projectTotalCost, this.projectMainImage, this.projectDetailImage1, this.projectDetailImage2, this.projectDetailImage3, this.projectDetailImage4)
+  //     .subscribe(
+  //       (newProjectFromApi) => {
+  //         this.projectArray.push(newProjectFromApi);
+  //         this.isShowingForm = false;
+  //
+  //       },
+  //
+  //       (err) => {
+  //         const allErrors = err.json();
+  //         console.log(allErrors);
+  //       }
+  //     )
+  // }
+
   }
-
 }

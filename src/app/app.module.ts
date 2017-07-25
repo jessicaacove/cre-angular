@@ -2,11 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AuthService } from './services/auth.service';
 import { ProjectService } from './services/project.service';
 import { InvestorServiceService } from './services/investor-service.service';
 import { InvestmentService } from './services/investment.service';
+import { LenderService } from './services/lender.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +25,8 @@ import { LenderListComponent } from './lender-list/lender-list.component';
     CurrentProjectsComponent,
     ProjectByIdComponent,
     InvestorListComponent,
-    LenderListComponent
+    LenderListComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { LenderListComponent } from './lender-list/lender-list.component';
     AuthService,
     ProjectService,
     InvestorServiceService,
-    InvestmentService
+    InvestmentService,
+    LenderService
   ],
   bootstrap: [AppComponent]
 })
