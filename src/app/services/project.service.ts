@@ -57,10 +57,11 @@ export class ProjectService {
 // Project details page
 
   // GET Project details page
-  oneProject() {
+  getOneProject(id) {
+    let endPoint = "/project/" + id
     return this.http
     .get(
-      'http://localhost:3000/api/project/:id',
+      'http://localhost:3000/api' + endPoint,
 
       // Send  the cookies across domains
       { withCredentials: true }

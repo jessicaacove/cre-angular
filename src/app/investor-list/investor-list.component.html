@@ -1,0 +1,62 @@
+
+<header>
+  <nav>
+    <div class="logodiv">
+      <h3 class="navlogo"> brokerFix </h3>
+    </div>
+    <div class="menu">
+      <span><a *ngIf="!isShowingForm" (click)="showNewInvestorForm()" class="menuitem highlightmenuitem"> Add New Investor Contact </a></span>
+      <span class="menuitem"><a [routerLink]="['/investors']">Lender Contacts</a></span>
+      <span class="menuitem"><a>Project Archives</a></span>
+      <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
+    </div>
+  </nav>
+</header>
+
+<h2 class="pagetitle"> Investor Contacts </h2>
+
+<section *ngIf="isShowingForm">
+  <h3> Add a New Investor </h3>
+
+  <form (ngSubmit)="saveNewInvestor()">
+    <label for="investor-first-name-input"> First Name </label>
+    <input id="investor-first-name-input" type="text" placeholder="Albert"
+        [(ngModel)]="firstName" name="firstName">
+    <br>
+
+    <label for="investor-last-name-input"> Last Name </label>
+    <input id="investor-last-name-input" type="text" placeholder="Anderson"
+        [(ngModel)]="lastName" name="lastName">
+    <br>
+
+    <label for="investor-email-input"> Email </label>
+    <input id="investor-email-input" type="text" placeholder="aanderson@aol.com"
+        [(ngModel)]="email" name="email">
+    <br>
+
+    <button> Save Investor </button>
+  </form>
+</section>
+
+<section *ngIf="!isShowingForm" class="container">
+  <ul>
+    <li *ngFor="let oneInvestor of investorArray">
+      <div class="investorbox">
+        <div class="panel">
+          <div class="investorName">
+            <h3>{{ oneInvestor.firstName }}, {{ oneInvestor.lastName }}</h3>
+            <h4> email address: {{ oneInvestor.email }} </h4>
+          </div>
+          <div class="content">
+            <ul>
+              <li *ngFor="let oneInvestment of oneInvestor.investments">
+                <p> Project: {{ oneInvestment.project }} </p>
+                <p> Investment Percentage: {{ oneInvestment.investmentPercentage }} </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>

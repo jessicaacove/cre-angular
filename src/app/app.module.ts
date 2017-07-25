@@ -5,19 +5,25 @@ import { FormsModule } from '@angular/forms';
 
 import { AuthService } from './services/auth.service';
 import { ProjectService } from './services/project.service';
+import { InvestorServiceService } from './services/investor-service.service';
+import { InvestmentService } from './services/investment.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CurrentProjectsComponent } from './current-projects/current-projects.component';
 import { ProjectByIdComponent } from './project-by-id/project-by-id.component';
+import { InvestorListComponent } from './investor-list/investor-list.component';
+import { LenderListComponent } from './lender-list/lender-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     CurrentProjectsComponent,
-    ProjectByIdComponent
+    ProjectByIdComponent,
+    InvestorListComponent,
+    LenderListComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +33,9 @@ import { ProjectByIdComponent } from './project-by-id/project-by-id.component';
   ],
   providers: [
     AuthService,
-    ProjectService
+    ProjectService,
+    InvestorServiceService,
+    InvestmentService
   ],
   bootstrap: [AppComponent]
 })

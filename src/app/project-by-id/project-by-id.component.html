@@ -6,12 +6,42 @@
     <div class="menu">
       <span><a class="menuitem highlightmenuitem"> Back to Current Projects </a></span>
       <span class="menuitem"><a>Investor Contacts</a></span>
-      <span class="menuitem"><a>Lender Contacts</a></span>
+      <span class="menuitem"><a [routerLink]="['/investors']">Lender Contacts</a></span>
       <span class="menuitem"><a>Project Archives</a></span>
       <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
     </div>
   </nav>
 </header>
 
-<div class="container">
-  <h2> {{ projectById.projectName }} </h2>
+<section class="container">
+  <h2> {{ oneProject.projectName }} </h2>
+  <h3> A {{ oneProject.projectType }} property located at
+    <br>
+    {{ oneProject.address }} </h3>
+
+    <p> These are the investments: {{ oneProject.investments }} </p>
+</section>
+
+<section>
+    <h3> Add an Investment </h3>
+    <form (ngSubmit)="saveNewInvestment()">
+      <label for="investment-percentage-input"> Investment Percentage </label>
+      <input id="investment-percentage-input" type="number" placeholder="33"
+          [(ngModel)]="investment.investmentPercentage" name="investmentPercentage">
+      <br>
+
+      <label for="investment-investor-input"> Investor Name </label>
+      <select name="investment-investor-input" id="investment-investor-input"
+          type="text" [(ngModel)]="investment.investor">
+        <option value="">Select an investor</option>
+        <option *ngFor="let oneInvestor of investorArray" value="{{oneInvestor._id}}">{{ oneInvestor.lastName }}, {{ oneInvestor.firstName }}</option>
+      </select>
+    <br>
+    <button> Save Investment </button>
+    <br>
+    <!-- <tt>singleSelect = {{data.singleSelect}}</tt> -->
+     <br>
+    </form>
+  </section>
+
+<p *ngFor="let oneInvestment of investmentArray"> {{ oneInvestment.investmentPercentage }} </p>

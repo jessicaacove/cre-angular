@@ -1,0 +1,91 @@
+<header>
+  <nav>
+    <div class="logodiv">
+      <h3 class="navlogo"> brokerFix </h3>
+    </div>
+    <div class="menu">
+      <span><a *ngIf="!isShowingForm" (click)="showNewLenderForm()" class="menuitem highlightmenuitem"> Add New Lender Contact </a></span>
+      <span class="menuitem"><a [routerLink]="['/investors']">Investor Contacts</a></span>
+      <span class="menuitem"><a>Project Archives</a></span>
+      <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
+    </div>
+  </nav>
+</header>
+
+<h2 class="pagetitle"> Lender Contacts </h2>
+
+<section *ngIf="isShowingForm">
+  <h3> Add a New Lender </h3>
+
+  <form (ngSubmit)="saveNewLender()">
+    <label for="institution-name-input"> Institution </label>
+    <input id="institution-name-input" type="text" placeholder="Trustworthy Bank"
+        [(ngModel)]="institutionName" name="institutionName">
+    <br>
+
+    <label for="contact-first-name-input"> First Name </label>
+    <input id="contact-first-name-input" type="text" placeholder="William"
+        [(ngModel)]="firstName" name="firstName">
+    <br>
+
+    <label for="contact-last-name-input"> Last Name </label>
+    <input id="contact-last-name-input" type="text" placeholder="Williams"
+        [(ngModel)]="lastName" name="lastName">
+    <br>
+
+    <label for="contact-email-input"> Email </label>
+    <input id="contact-email-input" type="text" placeholder="wwill@trustbank.com"
+        [(ngModel)]="email" name="email">
+    <br>
+
+    <label for="project-size-min-input"> Minimum Project Size </label>
+    <input id="project-size-min-input" type="number" placeholder="5,000,000"
+        [(ngModel)]="minProjectSize" name="minProjectSize">
+    <br>
+
+    <label for="project-size-max-input"> Maximum Project Size </label>
+    <input id="project-size-max-input" type="number" placeholder="20,000,000"
+        [(ngModel)]="maxProjectSize" name="maxProjectSize">
+    <br>
+
+    <label for="project-size-min-input"> Minimum Project Size </label>
+    <input id="project-size-min-input" type="number" placeholder="5,000,000"
+        [(ngModel)]="minProjectSize" name="minProjectSize">
+    <br>
+
+    <label for="project-geographical-area-input"> Geographical Areas </label>
+    <input id="project-geographical-area-input" type="text" placeholder="South Florida, New York, Southern California"
+        [(ngModel)]="projectGeoArea" name="projectGeoArea">
+    <br>
+
+    <label for="project-types-input"> Project Types </label>
+    <input id="project-types-input" type="text" placeholder="Mixed Use, Multifamily, Hotel"
+        [(ngModel)]="projectTypes" name="projectTypes">
+    <br>
+
+    <button> Save Lender </button>
+  </form>
+</section>
+
+<section *ngIf="!isShowingForm" class="container">
+  <ul>
+    <li *ngFor="let oneInvestor of investorArray">
+      <div class="investorbox">
+        <div class="panel">
+          <div class="investorName">
+            <h3>{{ oneInvestor.firstName }}, {{ oneInvestor.lastName }}</h3>
+            <h4> email address: {{ oneInvestor.email }} </h4>
+          </div>
+          <div class="content">
+            <ul>
+              <li *ngFor="let oneInvestment of oneInvestor.investments">
+                <p> Project: {{ oneInvestment.project }} </p>
+                <p> Investment Percentage: {{ oneInvestment.investmentPercentage }} </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>

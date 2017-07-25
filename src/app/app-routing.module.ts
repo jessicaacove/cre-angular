@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CurrentProjectsComponent } from './current-projects/current-projects.component';
 import { ProjectByIdComponent } from './project-by-id/project-by-id.component';
+import { InvestorListComponent } from './investor-list/investor-list.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'project/:id',
     component: ProjectByIdComponent
+  },
+  {
+    path: 'investors',
+    component: InvestorListComponent
   }
 ];
 
