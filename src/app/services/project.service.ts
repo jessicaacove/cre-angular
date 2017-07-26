@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class ProjectService {
 
@@ -42,7 +44,7 @@ export class ProjectService {
   allProjects() {
     return this.http
     .get(
-      'http://localhost:3000/api/current-projects',
+      environment.apiBase + '/api/current-projects',
 
       // Send  the cookies across domains
       { withCredentials: true }
@@ -61,7 +63,7 @@ export class ProjectService {
     let endPoint = "/project/" + id
     return this.http
     .get(
-      'http://localhost:3000/api' + endPoint,
+      environment.apiBase + '/api' + endPoint,
 
       // Send  the cookies across domains
       { withCredentials: true }

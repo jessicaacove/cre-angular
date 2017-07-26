@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class InvestorServiceService {
 
@@ -12,7 +14,7 @@ export class InvestorServiceService {
   allInvestors() {
     return this.http
     .get(
-      'http://localhost:3000/api/investors',
+      environment.apiBase + '/api/investors',
 
       // Send  the cookies across domains
       { withCredentials: true }
@@ -26,7 +28,7 @@ export class InvestorServiceService {
   newInvestor(thefirstName, thelastName, theemail) {
     return this.http
       .post(
-        'http://localhost:3000/api/investors',
+        environment.apiBase + '/api/investors',
 
         // Form body information
         {

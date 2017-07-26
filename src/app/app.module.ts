@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BootstrapGridModule } from 'ng2-bootstrap-grid';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +30,7 @@ import { LenderListComponent } from './lender-list/lender-list.component';
     FileSelectDirective
   ],
   imports: [
+    BootstrapGridModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

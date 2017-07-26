@@ -1,105 +1,163 @@
-<header>
-  <nav>
-    <div class="logodiv">
-      <img class='navlogoimg' src='/assets/images/logoimg.png'>
-      <h1 class="navlogo"><a class="navlogotext" [routerLink]="['/']"> brokerFix </a></h1>
-    </div>
-    <div class="menu">
-      <span><a *ngIf="!isShowingForm" (click)="showNewProjectForm()" class="menuitem highlightmenuitem"> Add New Project </a></span>
-      <span class="menuitem"><a [routerLink]="['/investors']">Investor Contacts</a></span>
-      <span class="menuitem"><a [routerLink]="['/lenders']">Lender Contacts</a></span>
-      <span class="menuitem"><a>Project Archives</a></span>
-      <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
-    </div>
-  </nav>
-</header>
+<container>
+    <row class="header">
+      <column sm="4" class="logodiv">
+        <img class='navlogoimg' src='/assets/images/logoimg.png'>
+        <h1 class="navlogo"><a class="navlogotext" [routerLink]="['/']"> brokerFix </a></h1>
+      </column>
+      <column sm="8">
+        <nav class="menu">
+          <span><a *ngIf="!isShowingForm" (click)="showNewProjectForm()" class="menuitem highlightmenuitem"> Add New Project </a></span>
+          <span class="menuitem"><a [routerLink]="['/investors']">Investor Contacts</a></span>
+          <span class="menuitem"><a [routerLink]="['/lenders']">Lender Contacts</a></span>
+          <span class="menuitem"><a>Project Archives</a></span>
+          <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
+        </nav>
+      </column>
+    </row>
 
-<div class="container">
+    <row>
+      <column sm="12">
+        <h2 *ngIf="!isShowingForm" class="pagetitle"> Current Projects </h2>
+      </column>
+    </row>
 
-<h2 class="pagetitle"> Current Projects </h2>
+    <row *ngIf="isShowingForm">
+      <column lg="12">
+        <row>
+          <column sm="12">
+            <h3 class="formtitle"> Add a New Project </h3>
+          </column>
+        </row>
+        <row>
+          <column md="4">
+          </column>
+          <column md="4" class="formcolumn">
+            <form class="newprojectform" (ngSubmit)="saveNewProject()">
+              <row>
+                <column md="7">
+                  <label for="project-name-input"> Project Name </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="project-name-input" type="text" placeholder="Apathetic Apartments"
+                      [(ngModel)]="projectName" name="projectName">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="project-type-input"> Property Type </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="project-type-input" type="text" placeholder="Multifamily"
+                      [(ngModel)]="projectType" name="projectType">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="project-address-input"> Property Address </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="project-address-input" type="text" placeholder="3232 Beguiled Boulevard, Middle, AM 12345"
+                      [(ngModel)]="projectAddress" name="projectAddress">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="project-total-cost-input"> Project Total Cost </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="project-total-cost-input" type="number" placeholder="1000000"
+                      [(ngModel)]="projectTotalCost" name="projectTotalCost">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="project-main-image-input"> Project Main Image </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="project-main-image-input" type="file"
+                      ng2FileSelect [uploader]="theUploader"
+                      [(ngModel)]="projectMainImage" name="projectMainImage">
+                  <br>
+                </column>
+              </row>
 
-<div *ngIf="isShowingForm">
-  <h3> Add a New Project </h3>
 
-  <form (ngSubmit)="saveNewProject()">
-    <label for="project-name-input"> Project Name </label>
-    <input id="project-name-input" type="text" placeholder="Apathetic Apartments"
-        [(ngModel)]="projectName" name="projectName">
-    <br>
+              <!-- <label for="project-main-image-input"> Project Main Image </label>
+              <input id="project-main-image-input" type="text" placeholder="propertypicture.jpg"
+                  [(ngModel)]="projectMainImage" name="projectMainImage">
+              <br> -->
 
-    <label for="project-type-input"> Property Type </label>
-    <input id="project-type-input" type="text" placeholder="Multifamily"
-        [(ngModel)]="projectType" name="projectType">
-    <br>
-
-    <label for="project-address-input"> Property Address </label>
-    <input id="project-address-input" type="text" placeholder="3232 Beguiled Boulevard, Middle, AM 12345"
-        [(ngModel)]="projectAddress" name="projectAddress">
-    <br>
-
-    <label for="project-total-cost-input"> Project Total Cost </label>
-    <input id="project-total-cost-input" type="number" placeholder="1000000"
-        [(ngModel)]="projectTotalCost" name="projectTotalCost">
-    <br>
-
-    <label for="project-main-image-input"> Project Main Image </label>
-    <input id="project-main-image-input" type="file"
-        ng2FileSelect [uploader]="theUploader"
-        [(ngModel)]="projectMainImage" name="projectMainImage">
-    <br>
-
-    <!-- <label for="project-main-image-input"> Project Main Image </label>
-    <input id="project-main-image-input" type="text" placeholder="propertypicture.jpg"
-        [(ngModel)]="projectMainImage" name="projectMainImage">
-    <br> -->
-
-    <!-- <label for="project-detail-image-1-input"> Project Detail Image 1 </label>
-    <input id="project-detail-image-1-input" type="text" placeholder="propertypicture1.jpg"
-        [(ngModel)]="projectDetailImage1" name="projectDetailImage1">
-    <br>
-
-    <label for="project-detail-image-2-input"> Project Detail Image 2 </label>
-    <input id="project-detail-image-2-input" type="text" placeholder="propertypicture2.jpg"
-        [(ngModel)]="projectDetailImage2" name="projectDetailImage2">
-    <br>
-
-    <label for="project-detail-image-3-input"> Project Detail Image 3 </label>
-    <input id="project-detail-image-3-input" type="text" placeholder="propertypicture3.jpg"
-        [(ngModel)]="projectDetailImage3" name="projectDetailImage3">
-    <br>
-
-    <label for="project-detail-image-4-input"> Project Detail Image 4 </label>
-    <input id="project-detail-image-4-input" type="text" placeholder="propertypicture4.jpg"
-        [(ngModel)]="projectDetailImage4" name="projectDetailImage4">
-    <br> -->
-
-    <button> Save Project </button>
-  </form>
-</div>
-
-<div *ngIf="!isShowingForm" class="container">
-  <ul>
-    <li *ngFor="let oneProject of projectArray">
-      <div class="currentprojectbox">
-        <div class="panel">
-          <div class="projecttitle">
-            <h1>{{ oneProject.projectName }}</h1>
-            <h2> A {{ oneProject.projectType }} property located at
+              <!-- <label for="project-detail-image-1-input"> Project Detail Image 1 </label>
+              <input id="project-detail-image-1-input" type="text" placeholder="propertypicture1.jpg"
+                  [(ngModel)]="projectDetailImage1" name="projectDetailImage1">
               <br>
-              {{ oneProject.address }} </h2>
+
+              <label for="project-detail-image-2-input"> Project Detail Image 2 </label>
+              <input id="project-detail-image-2-input" type="text" placeholder="propertypicture2.jpg"
+                  [(ngModel)]="projectDetailImage2" name="projectDetailImage2">
+              <br>
+
+              <label for="project-detail-image-3-input"> Project Detail Image 3 </label>
+              <input id="project-detail-image-3-input" type="text" placeholder="propertypicture3.jpg"
+                  [(ngModel)]="projectDetailImage3" name="projectDetailImage3">
+              <br>
+
+              <label for="project-detail-image-4-input"> Project Detail Image 4 </label>
+              <input id="project-detail-image-4-input" type="text" placeholder="propertypicture4.jpg"
+                  [(ngModel)]="projectDetailImage4" name="projectDetailImage4">
+              <br> -->
+              <row>
+                <column sm="6">
+                  <button (click)="hideNewProjectForm()" class="backformbutton"> Go Back </button>
+                </column>
+                <column sm="6">
+                  <button class="saveformbutton"> Save Project </button>
+                </column>
+              </row>
+            </form>
+        </column>
+        <column md="4">
+        </column>
+      </row>
+    </column>
+  </row>
+
+
+  <row *ngIf="!isShowingForm" class="container">
+    <column lg="12">
+      <ul>
+        <li *ngFor="let oneProject of projectArray">
+          <div class="currentprojectbox">
+            <div class="panel">
+              <div class="projecttitle">
+                <h1>{{ oneProject.projectName }}</h1>
+                <h2> A {{ oneProject.projectType }} property located at
+                  <br>
+                  {{ oneProject.address }} </h2>
+              </div>
+              <div class="project-img">
+                <img class="actualimage" *ngIf="oneProject.mainImage" src="http://localhost:3000{{ oneProject.mainImage }}" alt="" />
+              </div>
+              <div class="content">
+                <p> Investors: </p>
+                <p> Lenders: </p>
+                <p> These are the investments: {{ oneProject.investments }} </p>
+              </div>
+                <a [routerLink]="['/project', oneProject._id]" class="viewdetails">View Details</a>
+            </div>
           </div>
-          <div class="project-img">
-            <img class="actualimage" *ngIf="oneProject.mainImage" src="http://localhost:3000{{ oneProject.mainImage }}" alt="" />
-          </div>
-          <div class="content">
-            <p> Investors: </p>
-            <p> Lenders: </p>
-            <p> These are the investments: {{ oneProject.investments }} </p>
-          </div>
-            <a [routerLink]="['/project', oneProject._id]" class="viewdetails">View Details</a>
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
-</div>
+        </li>
+      </ul>
+    </column>
+  </row>
+
+</container>

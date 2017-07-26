@@ -79,6 +79,10 @@ export class CurrentProjectsComponent implements OnInit {
   this.isShowingForm = true;
   }
 
+  hideNewProjectForm() {
+    this.isShowingForm = false;
+  }
+
   saveNewProject() {
     this.theUploader.onBuildItemForm = (item, form) => {
       form.append('projectName', this.projectName);

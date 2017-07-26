@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class InvestmentService {
 
@@ -13,7 +15,7 @@ export class InvestmentService {
 
     return this.http
       .post(
-        'http://localhost:3000/api/project/' + projectId,
+        environment.apiBase + '/api/project/' + projectId,
 
         // Form body information
         {

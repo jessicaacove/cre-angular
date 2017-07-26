@@ -1,19 +1,17 @@
 
 .container {
-  background-image: url('/images/slider-bg.png');
-}
-
-.logodiv {
-  width: 20vh;
-  margin: 0px !important;
+  /*background-image: url('/assets/images/slider-bg.png');
+  background-image: cover;*/
 }
 
 .navlogo {
   margin: 15px 10px 20px 10px;
+  display: inline-block;
 }
 
 .navlogoimg {
-  width: 50%;
+  width: 25%;
+  margin-top: 10px;
 }
 
 .navlogotext {
@@ -21,19 +19,19 @@
   font-size: 20px;
   letter-spacing: 8px;
   font-style: normal;
-  padding-top: 10px;
   font-family: 'Raleway', sans-serif;
   text-decoration: none;
 }
 
 .menu {
   float: right;
-  /*margin-top: 15px;*/
+  margin-top: 15px;
   display: inline-block;
 }
 
 .menuitem {
   padding: 0px 10px 0px 10px;
+  font-family: Avenir, sans-serif;
 }
 
 .highlightmenuitem {
@@ -44,6 +42,9 @@
 
 .pagetitle {
   text-align: center;
+  font-family: Avenir;
+  letter-spacing: 2px;
+  margin-top: 50px;
 }
 
 
@@ -93,3 +94,11 @@ li {
   text-align: center;
   width: 100%;
   }
+
+.formtitle {
+  text-align: center;
+}
+
+.newprojectform label {
+  font-family: Avenir;
+}
