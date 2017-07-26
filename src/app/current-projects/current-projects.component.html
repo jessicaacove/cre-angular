@@ -1,7 +1,8 @@
 <header>
   <nav>
     <div class="logodiv">
-      <h3 class="navlogo"> brokerFix </h3>
+      <img class='navlogoimg' src='/assets/images/logoimg.png'>
+      <h1 class="navlogo"><a class="navlogotext" [routerLink]="['/']"> brokerFix </a></h1>
     </div>
     <div class="menu">
       <span><a *ngIf="!isShowingForm" (click)="showNewProjectForm()" class="menuitem highlightmenuitem"> Add New Project </a></span>

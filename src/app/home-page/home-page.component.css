@@ -1,13 +1,23 @@
+.pagediv {
+  background-image: url('/assets/images/home-bg.jpg') !important;
+  background-size: cover;
+}
 
 #home {
-  background-image: url('/images/home-bg.jpg');
-  background-size: cover;
   color: black;
   height: 100vh;
   text-align: center;
-  padding-top: 20vh;
-  font-family: 'Cormorant Garamond', serif;
+  padding-top: 30vh;
+  font-family: 'Avenir', sans-serif;
   }
+
+#home .container {
+  background-color: rgba(256, 256, 256, 0.75);
+  width: 40vh;
+  margin: 0 auto;
+  border-radius: 2px;
+  padding: 10px;
+}
 
 #home h1 {
   font-size: 20px;
@@ -19,32 +29,52 @@
 
 #home h2 {
   font-size: 15px;
+  font-weight: lighter;
+}
+
+#home #login-email-input {
+  margin-left: 25px;
 }
 
 #home .btn {
   background: transparent;
   border-radius: 0;
-  border: 3px solid #ffffff;
-  color: #ffffff;
+  border: 3px solid #808080;
+  color: #808080;
   font-weight: bold;
   letter-spacing: 2px;
   padding: 16px 42px;
-  margin-top: 40px;
+  margin: 20px 0px 20px 0px;
   transition: all 0.4s ease-in-out;
 }
 #home .btn:hover {
   background: #ffffff;
   color: #202020;
+  border-color: #202020;
 }
 
 .haveaccount {
   font-size: 10px;
   margin: 0px;
   padding:0px;
+  display: inline;
 }
 
-.haveaccountsignup {
+.haveaccountsign {
   display: inline-block;
   margin: 0px;
   padding:0px;
+}
+
+#email-input {
+  margin-left: 37px;
+}
+
+#password-input {
+  margin-left: 10px;
+}
+
+.error {
+  color: red;
+  border: 2px solid red;
 }

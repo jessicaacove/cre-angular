@@ -1,9 +1,11 @@
-<div *ngIf="isLoggedOut">
+<div *ngIf="isLoggedOut" class="pagediv">
 
   <section id="home">
+
   	<div class="container">
           <h1>brokerFix</h1>
           <h2>because brokerage is broken</h2>
+
         <div *ngIf="isShowingSignIn" class="signin">
 
           <p *ngIf="loginErrorMessage" class="error">
@@ -24,45 +26,47 @@
             <button class="smoothScroll btn btn-default"> Log In </button>
           </form>
 
-  			</div>
+          <p *ngIf="!isShowingForm" class="haveaccount"> Don't have an account? </p>
+          <span><a *ngIf="!isShowingForm" (click)="showSignUpForm()" class="haveaccount haveaccountsign" > Sign Up </a></span>
 
-        <p *ngIf="!isShowingForm" class="haveaccount"> Don't have an account? </p>
-        <span><a *ngIf="!isShowingForm" (click)="showSignUpForm()" class="haveaccount haveaccountsign" > Sign Up </a></span>
-  		</div>
+        </div>
 
-    <div *ngIf="isShowingForm" class="signup">
 
-      <p *ngIf="errorMessage" class="error">
-        {{ errorMessage }}
-      </p>
+        <div *ngIf="isShowingForm" class="signup">
 
-      <form (ngSubmit)="doSignUp()">
-        <label for="first-name-input"> First Name </label>
-        <input id="first-name-input" type="text" placeholder="John"
-            [(ngModel)]="firstNameValue" name="firstNameValue">
-        <br>
+          <p *ngIf="errorMessage" class="error">
+            {{ errorMessage }}
+          </p>
 
-        <label for="last-name-input"> Last Name </label>
-        <input id="last-name-input" type="text" placeholder="Smith"
-            [(ngModel)]="lastNameValue" name="lastNameValue">
-        <br>
+          <form (ngSubmit)="doSignUp()">
+            <label for="first-name-input"> First Name </label>
+            <input id="first-name-input" type="text" placeholder="John"
+                [(ngModel)]="firstNameValue" name="firstNameValue">
+            <br>
 
-        <label for="email-input"> Email </label>
-        <input id="email-input" type="email" placeholder="example@example.com"
-            [(ngModel)]="emailValue" name="emailValue">
-        <br>
+            <label for="last-name-input"> Last Name </label>
+            <input id="last-name-input" type="text" placeholder="Smith"
+                [(ngModel)]="lastNameValue" name="lastNameValue">
+            <br>
 
-        <label for="password-input"> Password </label>
-        <input id="password-input" type="password" placeholder="********"
-            [(ngModel)]="passwordValue" name="passwordValue">
-        <br>
+            <label for="email-input"> Email </label>
+            <input id="email-input" type="email" placeholder="example@example.com"
+                [(ngModel)]="emailValue" name="emailValue">
+            <br>
 
-        <button class="smoothScroll btn btn-default"> Sign Up </button>
-      </form>
+            <label for="password-input"> Password </label>
+            <input id="password-input" type="password" placeholder="********"
+                [(ngModel)]="passwordValue" name="passwordValue">
+            <br>
 
-      <p *ngIf="isShowingForm" class="haveaccount"> Already have an account? </p>
-      <a *ngIf="isShowingForm" (click)="showSignInForm()" class="haveaccount haveaccountsign"> Sign In </a>
+            <button class="smoothScroll btn btn-default"> Sign Up </button>
+          </form>
+
+          <p *ngIf="isShowingForm" class="haveaccount"> Already have an account? </p>
+          <a *ngIf="isShowingForm" (click)="showSignInForm()" class="haveaccount haveaccountsign"> Sign In </a>
+        </div>
     </div>
+
   </section>
 
 </div>
