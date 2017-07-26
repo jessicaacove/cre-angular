@@ -1,36 +1,66 @@
-<header>
-  <nav>
-    <div class="logodiv">
-      <h3 class="navlogo"> brokerFix </h3>
-    </div>
-    <div class="menu">
-      <span><a class="menuitem highlightmenuitem"> Back to Current Projects </a></span>
-      <span class="menuitem"><a [routerLink]="['/investors']">Investor Contacts</a></span>
-      <span class="menuitem"><a [routerLink]="['/lenders']">Lender Contacts</a></span>
-      <span class="menuitem"><a>Project Archives</a></span>
-      <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
-    </div>
-  </nav>
-</header>
+<container>
+    <row class="header">
+      <column sm="4" class="logodiv">
+        <img class='navlogoimg' src='/assets/images/logoimg.png'>
+        <h1 class="navlogo"><a class="navlogotext" [routerLink]="['/']"> brokerFix </a></h1>
+      </column>
+      <column sm="8">
+        <nav class="menu">
+          <span><a *ngIf="!isShowingInvestmentForm" (click)="showNewProjectForm()" class="menuitem highlightmenuitem"> Add New Project </a></span>
+          <span><a [routerLink]="['/investors']" class="menuitem">Investor Contacts</a></span>
+          <span><a [routerLink]="['/lenders']" class="menuitem">Lender Contacts</a></span>
+          <span><a class="menuitem">Project Archives</a></span>
+          <span><a (click)="logOut()" class="menuitem">Log Out</a></span>
+        </nav>
+      </column>
+    </row>
 
-<section class="container">
-  <h2> {{ oneProject.projectName }} </h2>
-  <h3> A {{ oneProject.projectType }} property located at
-    <br>
-    {{ oneProject.address }}
-  </h3>
+    <row>
+      <column sm="12">
+        <h2 *ngIf="!isShowingInvestmentForm" class="pagetitle"> {{ oneProject.projectName }} </h2>
+      </column>
+    </row>
+    <row>
+      <column sm="4" class="project-img">
+        <img class="actualimage" *ngIf="oneProject.mainImage" src="http://localhost:3000{{ oneProject.mainImage }}" alt="" />
+      </column>
+      <column sm="8">
+        <p> Type: {{ oneProject.projectType }} </p>
+        <br>
+        <p> Address: {{ oneProject.address }} </p>
+        <br>
+        <p> Capital Stack: </p>
+          <ul>
+            <li>
+              <p> {{ oneProject.investments }} </p>
+            </li>
+          </ul>
+      </column>
+    </row>
+    <row>
+      <column sm="4">
+      </column>
+      <column sm="2">
+        <button (click)="showNewInvestmenttForm()" class="addcapitalbutton"> Add Investment </button>
+      </column>
+      <column sm="2">
+        <button (click)="showNewInvestmenttForm()" class="addcapitalbutton"> Add Debt </button>
+      </column>
+      <column sm="4">
+      </column>
+    </row>
 
-  <div class="project-img">
-    <img class="actualimage" *ngIf="oneProject.mainImage" src="http://localhost:3000{{ oneProject.mainImage }}" alt="" />
-  </div>
+    <row *ngIf="isShowingInvestmentForm">
+      <row>
+        <column sm="12">
+          <h3> Add an Investment </h3>
+        </column>
+      </row>
+    </row>
 
-  <div class="investmentdetails">
-    <p> These are the investments: {{ oneProject.investments }} </p>
-  </div>
-</section>
+</container>
 
 <section>
-    <h3> Add an Investment </h3>
     <form (ngSubmit)="saveNewInvestment()">
       <label for="investment-percentage-input"> Investment Percentage </label>
       <input id="investment-percentage-input" type="number" placeholder="33"

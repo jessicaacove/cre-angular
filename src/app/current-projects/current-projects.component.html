@@ -7,10 +7,10 @@
       <column sm="8">
         <nav class="menu">
           <span><a *ngIf="!isShowingForm" (click)="showNewProjectForm()" class="menuitem highlightmenuitem"> Add New Project </a></span>
-          <span class="menuitem"><a [routerLink]="['/investors']">Investor Contacts</a></span>
-          <span class="menuitem"><a [routerLink]="['/lenders']">Lender Contacts</a></span>
-          <span class="menuitem"><a>Project Archives</a></span>
-          <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
+          <span><a [routerLink]="['/investors']" class="menuitem">Investor Contacts</a></span>
+          <span><a [routerLink]="['/lenders']" class="menuitem">Lender Contacts</a></span>
+          <span><a class="menuitem">Project Archives</a></span>
+          <span><a (click)="logOut()" class="menuitem">Log Out</a></span>
         </nav>
       </column>
     </row>
@@ -152,7 +152,7 @@
                 <p> Lenders: </p>
                 <p> These are the investments: {{ oneProject.investments }} </p>
               </div>
-                <a [routerLink]="['/project', oneProject._id]" class="viewdetails">View Details</a>
+                <button [routerLink]="['/project', oneProject._id]" class="viewdetails">View Details</button>
             </div>
           </div>
         </li>

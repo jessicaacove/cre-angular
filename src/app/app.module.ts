@@ -3,7 +3,11 @@ import { BootstrapGridModule } from 'ng2-bootstrap-grid';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
+
+import { ColSmDirective } from 'ng2-bootstrap-grid';
+import { ColMdDirective } from 'ng2-bootstrap-grid';
+import { ColLgDirective } from 'ng2-bootstrap-grid';
 
 import { AuthService } from './services/auth.service';
 import { ProjectService } from './services/project.service';
@@ -27,14 +31,18 @@ import { LenderListComponent } from './lender-list/lender-list.component';
     ProjectByIdComponent,
     InvestorListComponent,
     LenderListComponent,
-    FileSelectDirective
+    ColSmDirective,
+    ColMdDirective,
+    ColLgDirective
+
   ],
   imports: [
     BootstrapGridModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    FileUploadModule
   ],
   providers: [
     AuthService,

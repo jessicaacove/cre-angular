@@ -23,6 +23,8 @@ export class ProjectByIdComponent implements OnInit {
 
   investmentArray = [];
 
+  isShowingInvestmentForm: boolean = true;
+
   logoutErrorMessage: string;
   projectDetailsError: string;
 
@@ -70,6 +72,16 @@ export class ProjectByIdComponent implements OnInit {
         this.projectDetailsError = 'Sorry, could not find any projects.';
       });
   }
+
+  showNewInvestmenttForm() {
+    this.isShowingInvestmentForm = true;
+  }
+
+  hideNewInvestmentForm() {
+    this.isShowingInvestmentForm = false;
+  }
+
+
 
   saveNewInvestment() {
     this.investment.project = this.oneProject._id;
