@@ -71,4 +71,11 @@ export class ProjectService {
     // Parse the JSON
     .map(res => res.json());
   }
+
+  deleteOneProject(id) {
+    let endPoint = "/project/" + id
+    return this.http
+    .delete(
+      environment.apiBase + '/api' + endPoint)
+  }
 }

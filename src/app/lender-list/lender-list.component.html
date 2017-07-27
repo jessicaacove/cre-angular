@@ -1,88 +1,158 @@
-<header>
-  <nav>
-    <div class="logodiv">
-      <h3 class="navlogo"> brokerFix </h3>
-    </div>
-    <div class="menu">
-      <span><a *ngIf="!isShowingForm" (click)="showNewLenderForm()" class="menuitem highlightmenuitem"> Add New Lender Contact </a></span>
-      <span><a *ngIf="isShowingForm" [routerLink]="['/lenders']" class="menuitem highlightmenuitem"> Back to Lender List </a></span>
-      <span class="menuitem"><a [routerLink]="['/investors']">Investor Contacts</a></span>
-      <span class="menuitem"><a>Project Archives</a></span>
-      <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
-    </div>
-  </nav>
-</header>
 
-<h2 class="pagetitle"> Lender Contacts </h2>
+<container>
 
-<section *ngIf="isShowingForm">
-  <h3> Add a New Lender </h3>
+    <row>
+      <column md="12">
+        <h2 class="pagetitle"> Lender Contacts </h2>
+      </column>
+    </row>
+    <row>
+      <column sm="4">
+      </column>
+      <column sm="4" class="showformbutton">
+        <button *ngIf="!isShowingForm" (click)="showNewLenderForm()"> Add a New Lender </button>
+      </column>
+      <column sm="4">
+      </column>
+    </row>
 
-  <form (ngSubmit)="saveNewLender()">
-    <label for="institution-name-input"> Institution </label>
-    <input id="institution-name-input" type="text" placeholder="Trustworthy Bank"
-        [(ngModel)]="institutionName" name="institutionName">
-    <br>
+    <row *ngIf="isShowingForm">
+      <column lg="12">
+        <row>
+          <column md="12">
+            <h3 class="formtitle"> Add a New Lender </h3>
+          </column>
+        </row>
+        <row>
+          <column md="4">
+          </column>
+          <column md="4">
 
-    <label for="contact-first-name-input"> First Name </label>
-    <input id="contact-first-name-input" type="text" placeholder="William"
-        [(ngModel)]="contactFirstName" name="firstName">
-    <br>
+            <form class="newlenderform" (ngSubmit)="saveNewLender()">
+              <row>
+                <column md="7">
+                  <label for="institution-name-input"> Institution </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="institution-name-input" type="text" placeholder="Trustworthy Bank"
+                      [(ngModel)]="institutionName" name="institutionName">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="contact-first-name-input"> First Name </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="contact-first-name-input" type="text" placeholder="William"
+                      [(ngModel)]="contactFirstName" name="firstName">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="contact-last-name-input"> Last Name </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="contact-last-name-input" type="text" placeholder="Williams"
+                      [(ngModel)]="contactLastName" name="lastName">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="contact-email-input"> Email </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="contact-email-input" type="text" placeholder="wwill@trustbank.com"
+                      [(ngModel)]="email" name="email">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="project-size-min-input"> Minimum Project Size </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="project-size-min-input" type="number" placeholder="5,000,000"
+                      [(ngModel)]="projectSizeMin" name="minProjectSize">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="project-size-max-input"> Maximum Project Size </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="project-size-max-input" type="number" placeholder="20,000,000"
+                      [(ngModel)]="projectSizeMax" name="maxProjectSize">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="project-geographical-area-input"> Geographical Areas </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="project-geographical-area-input" type="text" placeholder="South Florida, New York, Southern California"
+                      [(ngModel)]="geographicalArea" name="projectGeoArea">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="project-types-input"> Project Types </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="project-types-input" type="text" placeholder="Mixed Use, Multifamily, Hotel"
+                      [(ngModel)]="projectTypes" name="projectTypes">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <button (click)="hideNewLenderForm()"> Go Back </button>
+                <button> Save Lender </button>
+              </row>
+            </form>
+          </column>
+          <column md="4">
+          </column>
+        </row>
+      </column>
+    </row>
 
-    <label for="contact-last-name-input"> Last Name </label>
-    <input id="contact-last-name-input" type="text" placeholder="Williams"
-        [(ngModel)]="contactLastName" name="lastName">
-    <br>
+    <row *ngIf="!isShowingForm" class="container">
+      <column lg="12">
+          <row *ngFor="let oneLender of lenderArray">
+            <column lg="12" class="ngforbox">
+              <row>
+                <column sm="10">
+                  <h4> {{ oneLender.institutionName }} </h4>
+                  <p> {{ oneLender.contactFirstName }}, {{ oneLender.contactLastName }} </p>
+                  <p> {{ oneLender.email }} </p>
+                  <!-- <row *ngFor="let oneInvestment of oneInvestor.investments">
+                    <column md="12">
+                      <p> Project: {{ oneInvestment.project }} </p>
+                      <p> Investment Percentage: {{ oneInvestment.investmentPercentage }} </p>
+                    </column>
+                  </row> -->
+                </column>
+                <column lg="2">
+                  <button class="smallbutton topsmallbutton"> Edit </button>
+                  <button class="smallbutton"> Delete </button>
+                </column>
+              </row>
+            </column>
+          </row>
+      </column>
+    </row>
 
-    <label for="contact-email-input"> Email </label>
-    <input id="contact-email-input" type="text" placeholder="wwill@trustbank.com"
-        [(ngModel)]="email" name="email">
-    <br>
-
-    <label for="project-size-min-input"> Minimum Project Size </label>
-    <input id="project-size-min-input" type="number" placeholder="5,000,000"
-        [(ngModel)]="projectSizeMin" name="minProjectSize">
-    <br>
-
-    <label for="project-size-max-input"> Maximum Project Size </label>
-    <input id="project-size-max-input" type="number" placeholder="20,000,000"
-        [(ngModel)]="projectSizeMax" name="maxProjectSize">
-    <br>
-
-    <label for="project-geographical-area-input"> Geographical Areas </label>
-    <input id="project-geographical-area-input" type="text" placeholder="South Florida, New York, Southern California"
-        [(ngModel)]="geographicalArea" name="projectGeoArea">
-    <br>
-
-    <label for="project-types-input"> Project Types </label>
-    <input id="project-types-input" type="text" placeholder="Mixed Use, Multifamily, Hotel"
-        [(ngModel)]="projectTypes" name="projectTypes">
-    <br>
-
-    <button> Save Lender </button>
-  </form>
-</section>
-
-<section *ngIf="!isShowingForm" class="container">
-  <ul>
-    <li *ngFor="let oneLender of lenderArray">
-      <div class="lenderbox">
-        <div class="panel">
-          <div class="lenderName">
-            <h3>{{ oneLender.institutionName }} </h3>
-            <h3>{{ oneLender.contactFirstName }}, {{ oneLender.contactLastName }}</h3>
-            <h4> email address: {{ oneLender.email }} </h4>
-          </div>
-          <!-- <div class="content">
-            <ul>
-              <li *ngFor="let oneLoan of oneLender.loans">
-                <p> Project: {{ oneInvestment.project }} </p>
-                <p> Investment Percentage: {{ oneInvestment.investmentPercentage }} </p>
-              </li>
-            </ul>
-          </div> -->
-        </div>
-      </div>
-    </li>
-  </ul>
-</section>
+  </container>

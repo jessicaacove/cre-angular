@@ -22,7 +22,7 @@ export class InvestorListComponent implements OnInit {
 
   isShowingForm: boolean = false;
 
-  logoutErrorMessage: string;
+
   investorListError: string;
 
   constructor(
@@ -42,16 +42,6 @@ export class InvestorListComponent implements OnInit {
     this.getInvestors();
   }
 
-  logOut() {
-    this.auth.logout()
-      .then(() => {
-        this.router.navigate(['/']);
-      })
-      .catch(() => {
-        this.logoutErrorMessage = 'Logout failed';
-      });
-  }
-
   getInvestors() {
     return this.investorService.allInvestors()
       .subscribe((allTheInvestors) => {
@@ -63,7 +53,11 @@ export class InvestorListComponent implements OnInit {
   }
 
   showNewInvestorForm() {
-  this.isShowingForm = true;
+    this.isShowingForm = true;
+  }
+
+  hideNewInvestorForm() {
+    this.isShowingForm = false;
   }
 
   saveNewInvestor() {
@@ -75,7 +69,6 @@ export class InvestorListComponent implements OnInit {
         },
         (err) => {
           const allErrors = err.json();
-          console.log(allErrors);
         }
     )
   }

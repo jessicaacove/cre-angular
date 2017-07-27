@@ -27,7 +27,7 @@ export class LenderListComponent implements OnInit {
 
   isShowingForm: boolean = false;
 
-  logoutErrorMessage: string;
+
   lenderListError: string;
 
   constructor(
@@ -48,15 +48,6 @@ export class LenderListComponent implements OnInit {
   }
 
 
-  logOut() {
-    this.auth.logout()
-      .then(() => {
-        this.router.navigate(['/']);
-      })
-      .catch(() => {
-        this.logoutErrorMessage = 'Logout failed';
-      });
-  }
 
   getLenders() {
     return this.lenderService.allLenders()
@@ -72,6 +63,10 @@ export class LenderListComponent implements OnInit {
   this.isShowingForm = true;
   }
 
+  hideNewLenderForm() {
+  this.isShowingForm = false;
+  }
+
   saveNewLender() {
     this.lenderService.newLender(this.institutionName, this.contactFirstName, this.contactLastName, this.email, this.projectSizeMin, this.projectSizeMax, this.geographicalArea, this.projectTypes)
       .subscribe(
@@ -81,7 +76,6 @@ export class LenderListComponent implements OnInit {
         },
         (err) => {
           const allErrors = err.json();
-          console.log(allErrors);
         }
     )
   }

@@ -1,63 +1,103 @@
 
-<header>
-  <nav>
-    <div class="logodiv">
-      <h3 class="navlogo"> brokerFix </h3>
-    </div>
-    <div class="menu">
-      <span><a *ngIf="!isShowingForm" (click)="showNewInvestorForm()" class="menuitem highlightmenuitem"> Add New Investor Contact </a></span>
-      <span><a *ngIf="isShowingForm" [routerLink]="['/investors']" class="menuitem highlightmenuitem"> Back to Investor List </a></span>
-      <span class="menuitem"><a [routerLink]="['/lenders']">Lender Contacts</a></span>
-      <span class="menuitem"><a>Project Archives</a></span>
-      <span class="menuitem"><a (click)="logOut()">Log Out</a></span>
-    </div>
-  </nav>
-</header>
+<container>
 
-<h2 class="pagetitle"> Investor Contacts </h2>
+    <row>
+      <column md="12">
+        <h2 class="pagetitle"> Investor Contacts </h2>
+      </column>
+    </row>
+    <row>
+      <column sm="4">
+      </column>
+      <column sm="4" class="showformbutton">
+        <button *ngIf="!isShowingForm" (click)="showNewInvestorForm()"> Add a New Investor </button>
+      </column>
+      <column sm="4">
+      </column>
+    </row>
 
-<section *ngIf="isShowingForm">
-  <h3> Add a New Investor </h3>
+    <row *ngIf="isShowingForm">
+      <column lg="12">
+        <row>
+          <column md="12">
+            <h3 class="formtitle"> Add a New Investor </h3>
+          </column>
+        </row>
+        <row>
+          <column md="4">
+          </column>
+          <column md="4">
 
-  <form (ngSubmit)="saveNewInvestor()">
-    <label for="investor-first-name-input"> First Name </label>
-    <input id="investor-first-name-input" type="text" placeholder="Albert"
-        [(ngModel)]="firstName" name="firstName">
-    <br>
+            <form class="newinvestorform" (ngSubmit)="saveNewInvestor()">
+              <row>
+                <column md="7">
+                  <label for="investor-first-name-input"> First Name </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="investor-first-name-input" type="text" placeholder="Albert"
+                      [(ngModel)]="firstName" name="firstName">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="investor-last-name-input"> Last Name </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="investor-last-name-input" type="text" placeholder="Anderson"
+                      [(ngModel)]="lastName" name="lastName">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <column md="7">
+                  <label for="investor-email-input"> Email </label>
+                  <br>
+                </column>
+                <column md="5">
+                  <input id="investor-email-input" type="text" placeholder="aanderson@aol.com"
+                      [(ngModel)]="email" name="email">
+                  <br>
+                </column>
+              </row>
+              <row>
+                <button (click)="hideNewInvestorForm()"> Go Back </button>
+                <button> Save Investor </button>
+              </row>
+            </form>
+          </column>
+          <column md="4">
+          </column>
+        </row>
+      </column>
+    </row>
 
-    <label for="investor-last-name-input"> Last Name </label>
-    <input id="investor-last-name-input" type="text" placeholder="Anderson"
-        [(ngModel)]="lastName" name="lastName">
-    <br>
+    <row *ngIf="!isShowingForm" class="container">
+      <column lg="12">
+          <row *ngFor="let oneInvestor of investorArray">
+            <column lg="12" class="ngforbox">
+              <row>
+                <column lg="10">
+                  <h4> {{ oneInvestor.lastName }}, {{ oneInvestor.firstName }} </h4>
+                  <p> {{ oneInvestor.email }} </p>
+                  <row *ngFor="let oneInvestment of oneInvestor.investments">
+                    <column md="12">
+                      <p> Project: {{ oneInvestment.projectName }} </p>
+                      <p> Investment Percentage: {{ oneInvestment.investmentPercentage }} </p>
+                    </column>
+                  </row>
+                </column>
+                <column lg="2">
+                  <button class="smallbutton" [routerLink]="['/investor', oneInvestor._id]"> View Details </button>
+                  <!-- <button class="smallbutton topsmallbutton"> Edit </button>
+                  <button class="smallbutton"> Delete </button> -->
+                </column>
+              </row>
+            </column>
+          </row>
+      </column>
+    </row>
 
-    <label for="investor-email-input"> Email </label>
-    <input id="investor-email-input" type="text" placeholder="aanderson@aol.com"
-        [(ngModel)]="email" name="email">
-    <br>
-
-    <button> Save Investor </button>
-  </form>
-</section>
-
-<section *ngIf="!isShowingForm" class="container">
-  <ul>
-    <li *ngFor="let oneInvestor of investorArray">
-      <div class="investorbox">
-        <div class="panel">
-          <div class="investorName">
-            <h3>{{ oneInvestor.firstName }}, {{ oneInvestor.lastName }}</h3>
-            <h4> email address: {{ oneInvestor.email }} </h4>
-          </div>
-          <div class="content">
-            <ul>
-              <li *ngFor="let oneInvestment of oneInvestor.investments">
-                <p> Project: {{ oneInvestment.project }} </p>
-                <p> Investment Percentage: {{ oneInvestment.investmentPercentage }} </p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
-</section>
+</container>

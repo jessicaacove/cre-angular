@@ -1,22 +1,13 @@
-.logodiv {
-  display: inline-block;
+.ngforbox {
+  background:rgba(150,150,150, 0.4);
+  margin: 20px 20px 20px 20px;
 }
 
-.navlogo {
-  margin: 15px 10px 20px 10px;
+.smallbutton {
+  width: 100%;
+  margin: 5px;
 }
 
-.menu {
-  float: right;
-  margin-top: 15px;
-}
-
-.menuitem {
-  padding: 0px 10px 0px 10px;
-}
-
-.highlightmenuitem {
-  border: 1px double gray;
-  padding: 5px;
-  margin-right: 15px;
+.topsmallbutton {
+  margin-top: 30px;
 }

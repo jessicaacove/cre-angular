@@ -1,84 +1,95 @@
 <container>
-    <row class="header">
-      <column sm="4" class="logodiv">
-        <img class='navlogoimg' src='/assets/images/logoimg.png'>
-        <h1 class="navlogo"><a class="navlogotext" [routerLink]="['/']"> brokerFix </a></h1>
-      </column>
-      <column sm="8">
-        <nav class="menu">
-          <span><a *ngIf="!isShowingInvestmentForm" (click)="showNewProjectForm()" class="menuitem highlightmenuitem"> Add New Project </a></span>
-          <span><a [routerLink]="['/investors']" class="menuitem">Investor Contacts</a></span>
-          <span><a [routerLink]="['/lenders']" class="menuitem">Lender Contacts</a></span>
-          <span><a class="menuitem">Project Archives</a></span>
-          <span><a (click)="logOut()" class="menuitem">Log Out</a></span>
-        </nav>
-      </column>
-    </row>
 
-    <row>
-      <column sm="12">
-        <h2 *ngIf="!isShowingInvestmentForm" class="pagetitle"> {{ oneProject.projectName }} </h2>
-      </column>
-    </row>
     <row>
       <column sm="4" class="project-img">
         <img class="actualimage" *ngIf="oneProject.mainImage" src="http://localhost:3000{{ oneProject.mainImage }}" alt="" />
       </column>
       <column sm="8">
-        <p> Type: {{ oneProject.projectType }} </p>
-        <br>
-        <p> Address: {{ oneProject.address }} </p>
-        <br>
-        <p> Capital Stack: </p>
-          <ul>
-            <li>
-              <p> {{ oneProject.investments }} </p>
-            </li>
-          </ul>
-      </column>
-    </row>
-    <row>
-      <column sm="4">
-      </column>
-      <column sm="2">
-        <button (click)="showNewInvestmenttForm()" class="addcapitalbutton"> Add Investment </button>
-      </column>
-      <column sm="2">
-        <button (click)="showNewInvestmenttForm()" class="addcapitalbutton"> Add Debt </button>
-      </column>
-      <column sm="4">
-      </column>
-    </row>
+        <row>
+          <column sm="12">
+            <h2> {{ oneProject.projectName }} </h2>
+          </column>
+        </row>
+        <row>
+          <column sm="6">
+            <p> A {{ oneProject.projectType }} property</p>
+            <br>
+            <p> at {{ oneProject.address }} </p>
+            <br>
+            <row>
+              <column md="12">
+                <p> Capital Stack: </p>
+                <row *ngFor="let oneInvestment of oneProject.investments">
+                  <p> {{ oneInvestment.investmentPercentage }} </p>
+                  <p> {{ oneInvestment.investorName }} </p>
+                </row>
+              </column>
+            </row>
+          </column>
+          <column sm="6">
+            <row *ngIf="!isShowingForm">
+              <column lg="12">
+                <button class="rightbuttonbar" (click)="showNewInvestmenttForm()"> Add Investment </button>
+                <button class="rightbuttonbar" (click)="showNewDebttForm()"> Add Debt </button>
+                <button class="rightbuttonbar"> Edit Project </button>
+                <button class="rightbuttonbar"> Delete Project </button>
+                <button class="rightbuttonbar" [routerLink]="['/']"> Back to Current Projects </button>
+              </column>
+            </row>
+            <row *ngIf="isShowingInvestmentForm">
+              <column lg="12">
+                <row>
+                    <h3> Add an Investment </h3>
+                </row>
+                <row>
+                  <form (ngSubmit)="saveNewInvestment()">
+                    <label for="investment-percentage-input"> Investment Percentage </label>
+                    <input id="investment-percentage-input" type="number" placeholder="33"
+                        [(ngModel)]="amount" name="investmentPercentage">
+                    <br>
 
-    <row *ngIf="isShowingInvestmentForm">
-      <row>
-        <column sm="12">
-          <h3> Add an Investment </h3>
-        </column>
-      </row>
+                    <label for="investment-investor-input"> Investor Name </label>
+                    <select name="investment-investor-input" id="investment-investor-input"
+                        type="text" [(ngModel)]="investorId">
+                      <option value="">Select an investor</option>
+                      <option *ngFor="let oneInvestor of investorArray" value="{{oneInvestor._id}}">{{ oneInvestor.lastName }}, {{ oneInvestor.firstName }}</option>
+                    </select>
+                    <br>
+                    <button> Save Investment </button>
+                    <button (click)="hideNewInvestmentForm()"> Back to Options </button>
+                    <br>
+                  </form>
+                </row>
+              </column>
+            </row>
+            <row *ngIf="isShowingDebtForm">
+              <row>
+                  <h3> Add Debt </h3>
+              </row>
+              <row>
+                <form (ngSubmit)="saveNewLoan()">
+                  <label for="debt-percentage-input"> Debt Percentage </label>
+                  <input id="debt-percentage-input" type="number" placeholder="33"
+                      [(ngModel)]="debtPercentage" name="debtPercentage">
+                  <br>
+
+                  <label for="institution-name-input"> Institution Name </label>
+                  <select name="institution-name-input" id="institution-name-input"
+                      type="dropdown" [(ngModel)]="institutionName">
+                    <option value="">Select a lender</option>
+                    <option *ngFor="let oneLender of lenderArray" value="{{oneLender._id}}"> {{ oneLender.institionName }} </option>
+                  </select>
+                  <br>
+
+                  <button> Save Debt </button>
+                  <button (click)="hideNewDebtForm()"> Back to Options </button>
+                  <br>
+                </form>
+              </row>
+            </row>
+          </column>
+        </row>
+      </column>
     </row>
 
 </container>
-
-<section>
-    <form (ngSubmit)="saveNewInvestment()">
-      <label for="investment-percentage-input"> Investment Percentage </label>
-      <input id="investment-percentage-input" type="number" placeholder="33"
-          [(ngModel)]="investment.investmentPercentage" name="investmentPercentage">
-      <br>
-
-      <label for="investment-investor-input"> Investor Name </label>
-      <select name="investment-investor-input" id="investment-investor-input"
-          type="text" [(ngModel)]="investment.investor">
-        <option value="">Select an investor</option>
-        <option *ngFor="let oneInvestor of investorArray" value="{{oneInvestor._id}}">{{ oneInvestor.lastName }}, {{ oneInvestor.firstName }}</option>
-      </select>
-    <br>
-    <button> Save Investment </button>
-    <br>
-    <!-- <tt>singleSelect = {{data.singleSelect}}</tt> -->
-     <br>
-    </form>
-  </section>
-
-<p *ngFor="let oneInvestment of investmentArray"> {{ oneInvestment.investmentPercentage }} </p>

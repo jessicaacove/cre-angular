@@ -1,23 +1,18 @@
 <container>
-    <row class="header">
-      <column sm="4" class="logodiv">
-        <img class='navlogoimg' src='/assets/images/logoimg.png'>
-        <h1 class="navlogo"><a class="navlogotext" [routerLink]="['/']"> brokerFix </a></h1>
-      </column>
-      <column sm="8">
-        <nav class="menu">
-          <span><a *ngIf="!isShowingForm" (click)="showNewProjectForm()" class="menuitem highlightmenuitem"> Add New Project </a></span>
-          <span><a [routerLink]="['/investors']" class="menuitem">Investor Contacts</a></span>
-          <span><a [routerLink]="['/lenders']" class="menuitem">Lender Contacts</a></span>
-          <span><a class="menuitem">Project Archives</a></span>
-          <span><a (click)="logOut()" class="menuitem">Log Out</a></span>
-        </nav>
-      </column>
-    </row>
 
     <row>
       <column sm="12">
         <h2 *ngIf="!isShowingForm" class="pagetitle"> Current Projects </h2>
+      </column>
+    </row>
+
+    <row>
+      <column sm="5">
+      </column>
+      <column sm="2">
+        <button *ngIf="!isShowingForm" (click)="showNewProjectForm()"> Add New Project </button>
+      </column>
+      <column sm="5">
       </column>
     </row>
 
@@ -120,7 +115,7 @@
                   <button (click)="hideNewProjectForm()" class="backformbutton"> Go Back </button>
                 </column>
                 <column sm="6">
-                  <button class="saveformbutton"> Save Project </button>
+                  <button type="submit" class="saveformbutton"> Save Project </button>
                 </column>
               </row>
             </form>
@@ -145,12 +140,12 @@
                   {{ oneProject.address }} </h2>
               </div>
               <div class="project-img">
-                <img class="actualimage" *ngIf="oneProject.mainImage" src="http://localhost:3000{{ oneProject.mainImage }}" alt="" />
+                <img class="actualimage" *ngIf="oneProject.mainImage" [src]= environment.apiBase + "{{ oneProject.mainImage }}" alt="" >
               </div>
               <div class="content">
                 <p> Investors: </p>
                 <p> Lenders: </p>
-                <p> These are the investments: {{ oneProject.investments }} </p>
+                <!-- <p> These are the investments: {{ oneProject.investments }} </p> -->
               </div>
                 <button [routerLink]="['/project', oneProject._id]" class="viewdetails">View Details</button>
             </div>

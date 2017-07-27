@@ -5,6 +5,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { CurrentProjectsComponent } from './current-projects/current-projects.component';
 import { ProjectByIdComponent } from './project-by-id/project-by-id.component';
 import { InvestorListComponent } from './investor-list/investor-list.component';
+import { InvestorByIdComponent } from './investor-by-id/investor-by-id.component';
 import { LenderListComponent } from './lender-list/lender-list.component';
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'investors',
     component: InvestorListComponent
+  },
+  {
+    path: 'investor/:id',
+    component: InvestorByIdComponent
   },
   {
     path: 'lenders',

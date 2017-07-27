@@ -22,6 +22,8 @@ import { CurrentProjectsComponent } from './current-projects/current-projects.co
 import { ProjectByIdComponent } from './project-by-id/project-by-id.component';
 import { InvestorListComponent } from './investor-list/investor-list.component';
 import { LenderListComponent } from './lender-list/lender-list.component';
+import { HeaderComponent } from './header/header.component';
+import { InvestorByIdComponent } from './investor-by-id/investor-by-id.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { LenderListComponent } from './lender-list/lender-list.component';
     LenderListComponent,
     ColSmDirective,
     ColMdDirective,
-    ColLgDirective
+    ColLgDirective,
+    HeaderComponent,
+    InvestorByIdComponent
 
   ],
   imports: [

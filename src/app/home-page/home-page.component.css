@@ -30,6 +30,7 @@
 #home h2 {
   font-size: 15px;
   font-weight: lighter;
+  margin-bottom: 20px;
 }
 
 #home #login-email-input {
@@ -37,20 +38,7 @@
 }
 
 #home .btn {
-  background: transparent;
-  border-radius: 0;
-  border: 3px solid #808080;
-  color: #808080;
-  font-weight: bold;
-  letter-spacing: 2px;
-  padding: 16px 42px;
-  margin: 20px 0px 20px 0px;
-  transition: all 0.4s ease-in-out;
-}
-#home .btn:hover {
-  background: #ffffff;
-  color: #202020;
-  border-color: #202020;
+  width: 60%;
 }
 
 .haveaccount {
@@ -72,6 +60,7 @@
 
 #password-input {
   margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .error {

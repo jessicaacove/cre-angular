@@ -44,4 +44,32 @@ export class InvestorServiceService {
       // Parse the JSON
       .map(res => res.json());
   } // close newInvestor()
+
+
+
+
+  // ----------------------------------------------------------
+  // Project details page
+
+    // GET Project details page
+    getOneInvestor(id) {
+      let endPoint = "/investor/" + id
+      return this.http
+      .get(
+        environment.apiBase + '/api' + endPoint,
+
+        // Send  the cookies across domains
+        { withCredentials: true }
+      )
+      // Parse the JSON
+      .map(res => res.json());
+    }
+
+
+    deleteOneInvestor(id) {
+      let endPoint = "/investor/" + id
+      return this.http
+      .delete(
+        environment.apiBase + '/api' + endPoint)
+    }
 }

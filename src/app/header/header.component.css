@@ -1,0 +1,47 @@
+.header {
+  border-bottom: 2px solid gray;
+  margin-bottom: 40px;
+}
+
+.navlogo {
+  margin: 0px;
+  display: inline-block;
+}
+
+.navlogoimg {
+  width: 90%;
+  margin-top: 15px;
+}
+
+.navlogo {
+  padding-top: 30px;
+}
+
+.navlogotext {
+  color: black;
+  font-size: 20px;
+  letter-spacing: 8px;
+  font-style: normal;
+  font-family: 'Raleway', sans-serif;
+  text-decoration: none;
+}
+
+.menu {
+  float: right;
+  margin-top: 43px;
+  display: inline-block;
+}
+
+.menuitem {
+  padding: 0px 10px 0px 10px;
+  font-family: Avenir, sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+.highlightmenuitem {
+  border: 1px double gray;
+  padding: 5px;
+  margin-right: 15px;
+  margin-left: 15px;
+}

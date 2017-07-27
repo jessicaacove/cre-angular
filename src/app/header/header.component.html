@@ -1,0 +1,23 @@
+<container *ngIf="currentUser">
+    <row class="header">
+      <column sm="4" class="logodiv">
+        <row>
+          <column lg="3" class="navlogocon">
+            <img class='navlogoimg' [routerLink]="['/']" src='/assets/images/logoimg.png'>
+          </column>
+          <column sm="9" class="navlogotextcon">
+            <h1 class="navlogo"><a class="navlogotext" [routerLink]="['/']"> brokerFix </a></h1>
+          </column>
+        </row>
+      </column>
+      <column sm="8">
+        <nav class="menu">
+          <span><a [routerLink]="['/']" class="menuitem">Current Projects</a></span>
+          <span><a [routerLink]="['/investors']" class="menuitem">Investor Contacts</a></span>
+          <span><a [routerLink]="['/lenders']" class="menuitem">Lender Contacts</a></span>
+          <span><a class="menuitem">Project Archives</a></span>
+          <span><a (click)="logOut()" class="menuitem">Log Out</a></span>
+        </nav>
+      </column>
+    </row>
+</container>

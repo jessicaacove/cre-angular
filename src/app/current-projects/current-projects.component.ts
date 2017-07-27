@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
+import { environment } from '../../environments/environment';
 
 import { AuthService } from '../services/auth.service';
 import { ProjectService } from '../services/project.service';
@@ -29,7 +30,7 @@ export class CurrentProjectsComponent implements OnInit {
   // projectDetailImage3: string;
   // projectDetailImage4: string;
 
-  logoutErrorMessage: string;
+
   projectListError: string;
   projectSaveError: string;
 
@@ -55,16 +56,6 @@ export class CurrentProjectsComponent implements OnInit {
       });
   }
 
-  logOut() {
-    this.auth.logout()
-      .then(() => {
-        this.router.navigate(['/']);
-      })
-      .catch(() => {
-        this.logoutErrorMessage = 'Logout failed';
-      });
-  }
-
   getProjects() {
     return this.projectService.allProjects()
       .subscribe((allTheProjects) => {
@@ -76,7 +67,7 @@ export class CurrentProjectsComponent implements OnInit {
   }
 
   showNewProjectForm() {
-  this.isShowingForm = true;
+    this.isShowingForm = true;
   }
 
   hideNewProjectForm() {
@@ -84,6 +75,18 @@ export class CurrentProjectsComponent implements OnInit {
   }
 
   saveNewProject() {
+
+  //   // if no picture, regular AJAX upload
+  //   if (this.theUploader.getNotUploadedItems().length === 0) {
+  //     this.saveCamelNoPicture();
+  //   }
+  //
+  //   // else, upload pictures with uploader
+  //   else {
+  //     this.saveCamelWithPicture();
+  //   }
+  // } // close saveNewCamel()
+
     this.theUploader.onBuildItemForm = (item, form) => {
       form.append('projectName', this.projectName);
       form.append('projectType', this.projectType);

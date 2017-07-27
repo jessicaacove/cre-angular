@@ -23,9 +23,16 @@ export class ProjectByIdComponent implements OnInit {
 
   investmentArray = [];
 
-  isShowingInvestmentForm: boolean = true;
+  amount: Number;
+  investorId: String;
+  projectId: String;
 
-  logoutErrorMessage: string;
+
+  isShowingForm: boolean = false;
+  isShowingInvestmentForm: boolean = false;
+  isShowingDebtForm: boolean = false;
+
+
   projectDetailsError: string;
 
   constructor(
@@ -48,20 +55,12 @@ export class ProjectByIdComponent implements OnInit {
 
       this.activatedRoute.params.subscribe((params) => {
         this.getProjectById(params.id);
+        this.projectId = params.id;
       })
 
       this.investorService.allInvestors().subscribe( (result) => this.investorArray = result);
   }
 
-  logOut() {
-    this.auth.logout()
-      .then(() => {
-        this.router.navigate(['/']);
-      })
-      .catch(() => {
-        this.logoutErrorMessage = 'Logout failed';
-      });
-  }
 
   getProjectById(id) {
     this.projectService.getOneProject(id)
@@ -73,32 +72,92 @@ export class ProjectByIdComponent implements OnInit {
       });
   }
 
+
+// Form button variables
+
   showNewInvestmenttForm() {
     this.isShowingInvestmentForm = true;
+    this.isShowingForm = true;
   }
 
   hideNewInvestmentForm() {
     this.isShowingInvestmentForm = false;
+    this.isShowingForm = false;
+  }
+
+  showNewDebttForm() {
+    this.isShowingDebtForm = true;
+    this.isShowingForm = true;
+  }
+
+  hideNewDebtForm() {
+    this.isShowingDebtForm = false;
+    this.isShowingForm = false;
   }
 
 
 
+  // Add an investment old
+
+  // saveNewInvestment() {
+  //   this.investment.project = this.oneProject._id;
+  //   this.investment.investmentPercentage;
+  // console.log("--------------------------------" + this.investment.investor);
+  //
+  //   this.investmentService.newInvestment(this.investment.investmentPercentage, this.investment.project, this.investment.investor)
+  //     .subscribe(
+  //       (newInvestmentFromApi) => {
+  //         this.investmentArray.push(newInvestmentFromApi);
+  //       },
+  //
+  //       (err) => {
+  //         const allErrors = err.json();
+  //         console.log(allErrors);
+  //       }
+  //     )
+  // }
+
+
+
+// add an investment newer
+  // saveNewInvestment(investmentPercentage, projectId, investorId) {
+  //   this.investmentService.newInvestment(investmentPercentage, projectId, investorId)
+  //     .subscribe(
+  //       (newInvestmentFromApi) => {
+  //         this.isShowingForm = false;
+  //       },
+  //       (err) => {
+  //         const allErrors = err.json();
+  //       }
+  //   )
+  // }
+
+
+// add an investment newest
   saveNewInvestment() {
-    this.investment.project = this.oneProject._id;
-    this.investment.investmentPercentage;
-  console.log("--------------------------------" + this.investment.investor);
+    const info = {
+        amount: this.amount,
+        investorId: this.investorId,
+        projectId: this.projectId
+    };
 
-    this.investmentService.newInvestment(this.investment.investmentPercentage, this.investment.project, this.investment.investor)
-      .subscribe(
-        (newInvestmentFromApi) => {
-          this.investmentArray.push(newInvestmentFromApi);
-        },
 
-        (err) => {
-          const allErrors = err.json();
-          console.log(allErrors);
-        }
-      )
+    this.investmentService.newInvestment(info)
+      .then((project) => {
+          this.oneProject.investments = project.investments;
+      })
+      .catch((err) => {
+          console.log(err);
+          console.log('oh no error')
+      });
   }
+
+
+// DELETE project
+deleteOneProject(id) {
+  //call my apiService's deleteOne function and pass the id as the argument
+  this.projectService.deleteOneProject(id)
+  .subscribe((deletedProject)=>{});
+}
 
 }
