@@ -7,6 +7,7 @@ import { ProjectByIdComponent } from './project-by-id/project-by-id.component';
 import { InvestorListComponent } from './investor-list/investor-list.component';
 import { InvestorByIdComponent } from './investor-by-id/investor-by-id.component';
 import { LenderListComponent } from './lender-list/lender-list.component';
+import { LenderByIdComponent } from './lender-by-id/lender-by-id.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
     path: 'lenders',
     component: LenderListComponent
   },
+  {
+    path: 'lender/:id',
+    component: LenderByIdComponent
+  }
 ];
 
 @NgModule({

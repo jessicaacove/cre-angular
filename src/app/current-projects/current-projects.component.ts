@@ -14,6 +14,7 @@ import { ProjectService } from '../services/project.service';
 })
 export class CurrentProjectsComponent implements OnInit {
 
+  picBase = environment.apiBase;
   currentUser: any = {};
 
   projectArray: any[] = [];

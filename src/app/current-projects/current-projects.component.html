@@ -140,7 +140,7 @@
                   {{ oneProject.address }} </h2>
               </div>
               <div class="project-img">
-                <img class="actualimage" *ngIf="oneProject.mainImage" [src]= environment.apiBase + "{{ oneProject.mainImage }}" alt="" >
+                <img class="actualimage" *ngIf="oneProject.mainImage" [src]="picBase + oneProject.mainImage" alt="" >
               </div>
               <div class="content">
                 <p> Investors: </p>

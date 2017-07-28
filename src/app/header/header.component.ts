@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  currentUser: any = {};
+  currentUser: any = false;
 
   logoutErrorMessage: string;
 
@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
     this.auth.logout()
       .then(() => {
         this.router.navigate(['/']);
+        this.currentUser = "";
       })
       .catch(() => {
         this.logoutErrorMessage = 'Logout failed';

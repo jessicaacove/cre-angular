@@ -14,6 +14,7 @@ import { ProjectService } from './services/project.service';
 import { InvestorServiceService } from './services/investor-service.service';
 import { InvestmentService } from './services/investment.service';
 import { LenderService } from './services/lender.service';
+import { LoanService } from './services/loan.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { InvestorListComponent } from './investor-list/investor-list.component';
 import { LenderListComponent } from './lender-list/lender-list.component';
 import { HeaderComponent } from './header/header.component';
 import { InvestorByIdComponent } from './investor-by-id/investor-by-id.component';
+import { LenderByIdComponent } from './lender-by-id/lender-by-id.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { InvestorByIdComponent } from './investor-by-id/investor-by-id.component
     ColMdDirective,
     ColLgDirective,
     HeaderComponent,
-    InvestorByIdComponent
+    InvestorByIdComponent,
+    LenderByIdComponent
 
   ],
   imports: [
@@ -53,7 +56,8 @@ import { InvestorByIdComponent } from './investor-by-id/investor-by-id.component
     ProjectService,
     InvestorServiceService,
     InvestmentService,
-    LenderService
+    LenderService,
+    LoanService
   ],
   bootstrap: [AppComponent]
 })

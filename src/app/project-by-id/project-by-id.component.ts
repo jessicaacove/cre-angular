@@ -5,6 +5,8 @@ import { AuthService } from '../services/auth.service';
 import { ProjectService } from '../services/project.service';
 import { InvestorServiceService } from '../services/investor-service.service';
 import { InvestmentService } from '../services/investment.service';
+import { LenderService } from '../services/lender.service';
+import { LoanService } from '../services/loan.service';
 
 @Component({
   selector: 'app-project-by-id',
@@ -27,6 +29,10 @@ export class ProjectByIdComponent implements OnInit {
   investorId: String;
   projectId: String;
 
+  debtAmount: Number;
+  lenderId: String;
+
+  lenderArray = [];
 
   isShowingForm: boolean = false;
   isShowingInvestmentForm: boolean = false;
@@ -41,7 +47,9 @@ export class ProjectByIdComponent implements OnInit {
     private auth: AuthService,
     private projectService: ProjectService,
     private investorService: InvestorServiceService,
-    private investmentService: InvestmentService
+    private investmentService: InvestmentService,
+    private loanService: LoanService,
+    private lenderService: LenderService
   ) { }
 
   ngOnInit() {
@@ -59,6 +67,7 @@ export class ProjectByIdComponent implements OnInit {
       })
 
       this.investorService.allInvestors().subscribe( (result) => this.investorArray = result);
+      this.lenderService.allLenders().subscribe((result) => this.lenderArray = result);
   }
 
 
@@ -151,6 +160,30 @@ export class ProjectByIdComponent implements OnInit {
           console.log('oh no error')
       });
   }
+
+
+// add new loan
+saveNewLoan() {
+  const info = {
+      amount: this.debtAmount,
+      lenderId: this.lenderId,
+      projectId: this.projectId
+  };
+
+
+  this.loanService.newLoan(info)
+    .then((project) => {
+        this.oneProject.debt = project.debt;
+    })
+    .catch((err) => {
+        console.log(err);
+        console.log('oh no error')
+    });
+}
+
+
+
+
 
 
 // DELETE project

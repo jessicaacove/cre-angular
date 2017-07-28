@@ -23,6 +23,10 @@
                   <p> {{ oneInvestment.investmentPercentage }} </p>
                   <p> {{ oneInvestment.investorName }} </p>
                 </row>
+                <row *ngFor="let oneLoan of oneProject.debt">
+                  <p> {{ oneLoan.debtPercentage }} </p>
+                  <p> {{ oneLoan.institutionName }} </p>
+                </row>
               </column>
             </row>
           </column>
@@ -70,14 +74,14 @@
                 <form (ngSubmit)="saveNewLoan()">
                   <label for="debt-percentage-input"> Debt Percentage </label>
                   <input id="debt-percentage-input" type="number" placeholder="33"
-                      [(ngModel)]="debtPercentage" name="debtPercentage">
+                      [(ngModel)]="debtAmount" name="debtPercentage">
                   <br>
 
                   <label for="institution-name-input"> Institution Name </label>
                   <select name="institution-name-input" id="institution-name-input"
-                      type="dropdown" [(ngModel)]="institutionName">
+                      type="text" [(ngModel)]="lenderId">
                     <option value="">Select a lender</option>
-                    <option *ngFor="let oneLender of lenderArray" value="{{oneLender._id}}"> {{ oneLender.institionName }} </option>
+                    <option *ngFor="let oneLender of lenderArray" value="{{oneLender._id}}"> {{ oneLender.institutionName }} </option>
                   </select>
                   <br>
 

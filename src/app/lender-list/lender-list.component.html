@@ -138,14 +138,9 @@
                   <h4> {{ oneLender.institutionName }} </h4>
                   <p> {{ oneLender.contactFirstName }}, {{ oneLender.contactLastName }} </p>
                   <p> {{ oneLender.email }} </p>
-                  <!-- <row *ngFor="let oneInvestment of oneInvestor.investments">
-                    <column md="12">
-                      <p> Project: {{ oneInvestment.project }} </p>
-                      <p> Investment Percentage: {{ oneInvestment.investmentPercentage }} </p>
-                    </column>
-                  </row> -->
                 </column>
                 <column lg="2">
+                  <button class="smallbutton" [routerLink]="['/lender', oneLender._id]"> View Details </button>
                   <button class="smallbutton topsmallbutton"> Edit </button>
                   <button class="smallbutton"> Delete </button>
                 </column>

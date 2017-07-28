@@ -52,4 +52,22 @@ export class LenderService {
       .map(res => res.json());
   } // close newLender()
 
+
+
+// ___________________________________
+// Get lender by id
+
+getOneLender(id) {
+  let endPoint = "/lender/" + id
+  return this.http
+  .get(
+    environment.apiBase + '/api' + endPoint,
+
+    // Send  the cookies across domains
+    { withCredentials: true }
+  )
+  // Parse the JSON
+  .map(res => res.json());
+}
+
 }

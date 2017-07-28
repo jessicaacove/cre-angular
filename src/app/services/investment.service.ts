@@ -81,6 +81,6 @@ export class InvestmentService {
       .catch(()=>{
         return {investmentSaveErrorMessage: "Investment first post to project error"}}
       )
-  } // close newProject()
+  } // close newInvestment()
 
 }
