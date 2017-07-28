@@ -26,10 +26,7 @@ export class CurrentProjectsComponent implements OnInit {
   projectAddress: string;
   projectTotalCost: number;
   projectMainImage: string;
-  // projectDetailImage1: string;
-  // projectDetailImage2: string;
-  // projectDetailImage3: string;
-  // projectDetailImage4: string;
+
 
 
   projectListError: string;
@@ -37,7 +34,7 @@ export class CurrentProjectsComponent implements OnInit {
 
 
   theUploader = new FileUploader({
-    url: 'http://localhost:3000/api/current-projects'
+    url: this.picBase + '/api/current-projects'
   });
 
   constructor(

@@ -132,17 +132,20 @@
     <row *ngIf="!isShowingForm" class="container">
       <column lg="12">
           <row *ngFor="let oneLender of lenderArray">
-            <column lg="12" class="ngforbox">
+            <column lg="3" class="ngforbox">
               <row>
-                <column sm="10">
+                <column sm="12">
                   <h4> {{ oneLender.institutionName }} </h4>
                   <p> {{ oneLender.contactFirstName }}, {{ oneLender.contactLastName }} </p>
                   <p> {{ oneLender.email }} </p>
+                  <div *ngFor="let oneLoan of oneLender.debt">
+                    <p> {{ oneLoan.debtPercentage }}% - {{ oneLoan.projectName }} </p>
+                  </div>
                 </column>
-                <column lg="2">
-                  <button class="smallbutton" [routerLink]="['/lender', oneLender._id]"> View Details </button>
+                <column lg="0">
+                  <!-- <button class="smallbutton" [routerLink]="['/lender', oneLender._id]"> View Details </button>
                   <button class="smallbutton topsmallbutton"> Edit </button>
-                  <button class="smallbutton"> Delete </button>
+                  <button class="smallbutton"> Delete </button> -->
                 </column>
               </row>
             </column>

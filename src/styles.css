@@ -46,3 +46,7 @@ button:hover {
   color: #202020;
   border-color: #202020;
 }
+
+.ngforbox {
+  text-align: center;
+}
