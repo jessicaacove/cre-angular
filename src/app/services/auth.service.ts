@@ -25,7 +25,7 @@ export class AuthService {
         signupPassword: thePassword
       },
       // Send the cookies across domains
-      {withCredentials: true}
+      { withCredentials: true }
     )
     .toPromise()
     .then(res => res.json())

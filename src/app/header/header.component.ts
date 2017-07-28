@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
         this.currentUser = userFromApi;
       })
       .catch(() => {
+        this.currentUser = false;
         this.router.navigate(['/']);
       });
   }
@@ -34,7 +35,7 @@ export class HeaderComponent implements OnInit {
     this.auth.logout()
       .then(() => {
         this.router.navigate(['/']);
-        this.currentUser = "";
+        this.currentUser = false;
       })
       .catch(() => {
         this.logoutErrorMessage = 'Logout failed';
